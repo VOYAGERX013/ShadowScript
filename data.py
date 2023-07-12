@@ -11,3 +11,9 @@ class Data:
     def write(self, variable, expression):
         variable_name = variable.value
         self.variables[variable_name] = expression
+
+    def includes(self, id):
+        if id in self.variables:
+            return True
+        
+        return False
