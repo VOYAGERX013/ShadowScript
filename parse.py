@@ -1,5 +1,6 @@
 class Parser:
-    def __init__(self, tokens):
+    def __init__(self, tokens, base):
+        self.data = base
         self.tokens = tokens
         self.idx = 0
         self.token = self.tokens[self.idx]
@@ -134,6 +135,16 @@ class Parser:
                 right_node = self.boolean_expression()
 
                 return [left_node, operation, right_node]
+            
+        elif self.token.type.startswith ('VAR'):
+            if self.data.includes(self.token.value):
+                left_node = self.variable()
+                self.move()
+                operation = self.token
+                self.move()
+                if operation.value == '=':
+                    right_node = self.boolean_expression()
+                    return [left_node, operation, right_node]
 
         elif self.token.type == 'INT' or self.token.type == 'FLT' or self.token.type == 'OP' or self.token.value == 'not':
             return self.boolean_expression()

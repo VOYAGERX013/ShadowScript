@@ -16,7 +16,7 @@ while True:
     tokenizer = Lexer(text)
     tokens = tokenizer.tokenize()
 
-    parser = Parser(tokens)
+    parser = Parser(tokens, base)
     tree = parser.parse()
 
     interpreter = Interpreter(tree, base)
