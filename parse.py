@@ -128,15 +128,18 @@ class Parser:
         if self.token.type == 'DECL':
             self.move()
             left_node = self.variable()
-            self.move()
-            if self.token.value == '=':
-                operation = self.token
+            if not self.data.includes(self.token.value):
                 self.move()
-                right_node = self.boolean_expression()
+                if self.token.value == '=':
+                    operation = self.token
+                    self.move()
+                    right_node = self.boolean_expression()
 
-                return [left_node, operation, right_node]
-            
-        elif self.token.type.startswith ('VAR'):
+                    return [left_node, operation, right_node]
+            else:
+                return f'Variable {left_node} has already been declared'
+
+        elif self.token.type.startswith('VAR'):
             if self.data.includes(self.token.value):
                 left_node = self.variable()
                 self.move()
