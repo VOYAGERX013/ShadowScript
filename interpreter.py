@@ -22,8 +22,8 @@ class Interpreter:
         right_type = "VAR" if str(right.type).startswith("VAR") else str(right.type)
         if op.value == "=":
             left.type = f"VAR({right_type})"
-            self.data.write(left, right)
-            return self.data.read_all()
+            self.base.write(left, right)
+            return self.base.read_all()
 
         left = getattr(self, f"read_{left_type}")(left.value)
         right = getattr(self, f"read_{right_type}")(right.value)
