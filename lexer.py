@@ -6,7 +6,7 @@ class Lexer:
     # while <expr> do <statement>
     digits = "0123456789"
     letters = "abcdefghijklmnopqrstuvwxyz"
-    operations = "+-/*()="
+    operations = "+-/*%()="
     stopwords = [" "]
     declarations = ["make"]
     boolean = ["and", "or", "not"]
