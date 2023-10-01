@@ -30,7 +30,7 @@ class Parser:
         left_node = self.factor()
         self.move()
         
-        while self.token.value == "*" or self.token.value == "/":
+        while self.token.value == "*" or self.token.value == "/" or self.token.value == "%":
             operator = self.token
             self.move()
             right_node = self.factor()
